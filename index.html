@@ -11,10 +11,14 @@
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background: #ffffff;
+}
+
+body {
     font-family: Arial, sans-serif;
 }
 
@@ -22,17 +26,19 @@ body {
     position: relative;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     overflow: hidden;
     line-height: 0;
 }
 
+/* Основное изображение */
 .slider > img {
     display: block;
     width: 100%;
     height: auto;
 }
 
+/* Слой со второй фотографией */
 .after {
     position: absolute;
     top: 0;
@@ -42,13 +48,19 @@ body {
     overflow: hidden;
 }
 
+/* Вторая фотография имеет размер всего слайдера,
+   а не размер области .after */
 .after img {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: block;
     width: 100%;
-    max-width: none;
     height: auto;
+    max-width: none;
 }
 
+/* Вертикальная линия ползунка */
 .handle {
     position: absolute;
     top: 0;
@@ -61,6 +73,7 @@ body {
     pointer-events: none;
 }
 
+/* Круглая ручка */
 .handle::after {
     content: "↔";
     position: absolute;
@@ -78,6 +91,7 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
+/* Невидимый элемент управления */
 .slider input {
     position: absolute;
     inset: 0;
@@ -94,14 +108,18 @@ body {
 
 <div class="slider">
 
+    <!-- Первая фотография -->
     <img src="original.png" alt="">
 
+    <!-- Вторая фотография -->
     <div class="after">
         <img src="satire.png" alt="">
     </div>
 
+    <!-- Ползунок -->
     <div class="handle"></div>
 
+    <!-- Управление -->
     <input
         type="range"
         min="0"
@@ -115,17 +133,46 @@ body {
 <script>
 const slider = document.querySelector(".slider");
 const after = slider.querySelector(".after");
+const afterImage = after.querySelector("img");
 const handle = slider.querySelector(".handle");
 const range = slider.querySelector("input");
 
+
+/* Подгоняем вторую фотографию под полную ширину слайдера */
+function setImageSize() {
+    afterImage.style.width = slider.clientWidth + "px";
+}
+
+
+/* Двигаем границу между фотографиями */
 function updateSlider(value) {
     after.style.width = value + "%";
     handle.style.left = value + "%";
 }
 
+
+/* После загрузки страницы */
+window.addEventListener("load", function () {
+    setImageSize();
+    updateSlider(range.value);
+});
+
+
+/* При изменении размера окна */
+window.addEventListener("resize", function () {
+    setImageSize();
+});
+
+
+/* Движение ползунка */
 range.addEventListener("input", function () {
     updateSlider(this.value);
 });
+
+
+/* Первоначальная установка */
+setImageSize();
+updateSlider(range.value);
 </script>
 
 </body>
