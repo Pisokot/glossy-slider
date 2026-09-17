@@ -55,9 +55,9 @@ body {
     bottom: 0;
     left: 50%;
     width: 3px;
-    background: #fff;
+    background: #ffffff;
     transform: translateX(-50%);
-    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
     pointer-events: none;
 }
 
@@ -70,12 +70,12 @@ body {
     height: 44px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: #fff;
-    color: #222;
+    background: #ffffff;
+    color: #222222;
     font-size: 22px;
     line-height: 44px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .slider input {
@@ -87,22 +87,6 @@ body {
     opacity: 0;
     cursor: ew-resize;
 }
-
-.labels {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 8px auto 0;
-    font-size: 12px;
-    line-height: 1.3;
-    color: #555;
-}
-
-@media (max-width: 600px) {
-    body {
-        padding: 8px;
-    }
-}
 </style>
 </head>
 
@@ -110,10 +94,10 @@ body {
 
 <div class="slider">
 
-    <img src="original.jpg" alt="Оригинал">
+    <img src="original.png" alt="">
 
     <div class="after">
-        <img src="satire.jpg" alt="Сатирическая версия">
+        <img src="satire.png" alt="">
     </div>
 
     <div class="handle"></div>
@@ -126,11 +110,6 @@ body {
         aria-label="Сравнить изображения"
     >
 
-</div>
-
-<div class="labels">
-    <span>ОРИГИНАЛ</span>
-    <span>САТИРА</span>
 </div>
 
 <script>
